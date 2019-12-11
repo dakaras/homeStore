@@ -56,6 +56,11 @@ class UI{
         })
         productsDOM.innerHTML = result
     }
+    getCartButtons() {
+        //spread operator turns node list to array so its props can be used
+        const cartButtons = [...document.querySelectorAll('.bag-btn')]
+        console.log(cartButtons)
+    }
 }
 
 //local storage
@@ -73,5 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
 products.getProducts().then(products => {
     ui.displayProducts(products)
     Storage.saveProducts(products)
+    }).then(() => {
+        //get cart buttons after products load so they may be added to cart
+        ui.getCartButtons()
     })
 })
